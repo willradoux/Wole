@@ -17,17 +17,6 @@
   animation: ocean-swell 4s ease-in-out infinite;
 }
 
-/* tampa a borda de baixo da onda da frente, senão aparecia uma linha clarinha */
-.ocean__waves::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px;
-  background: var(--ocean-top);
-}
-
 .ocean__wave {
   position: absolute;
   left: 0;
@@ -37,8 +26,10 @@
   will-change: transform;
 }
 
-.ocean__wave--back  { fill: var(--ocean-wave-back); opacity: 0.6; }
-.ocean__wave--mid   { fill: var(--ocean-wave-mid); opacity: 0.8; }
+/* as de trás terminam um pouco acima, escondidas atrás da parte sólida da onda da frente.
+   se fossem até o fundo, a borda delas vazava como uma linha clarinha */
+.ocean__wave--back  { fill: var(--ocean-wave-back); opacity: 0.6; bottom: 10px; }
+.ocean__wave--mid   { fill: var(--ocean-wave-mid); opacity: 0.8; bottom: 10px; }
 .ocean__wave--front { fill: var(--ocean-top); }
 
 .ocean__depths {

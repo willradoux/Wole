@@ -1,4 +1,5 @@
-import { Button } from "./components/Button";
+import { IconButton } from "./components/IconButton";
+import { DropIcon, ResetIcon } from "./components/icons";
 import { Ocean } from "./features/ocean/Ocean";
 import { usePet } from "./features/pet/usePet";
 import { WhalePet } from "./features/whale/WhalePet";
@@ -21,10 +22,14 @@ export default function App() {
         />
 
         <div className="app__actions">
-          <Button onClick={pet.feed}>Cliques: {pet.clicks}</Button>
-          <Button variant="secondary" onClick={pet.reset} disabled={!pet.canReset}>
-            ↺ Resetar
-          </Button>
+          <IconButton label="Encher o mar" size="lg" onClick={pet.feed}>
+            <DropIcon />
+          </IconButton>
+
+          {/* só aparece depois que o mar começa a encher */}
+          <IconButton label="Resetar" variant="secondary" hidden={!pet.canReset} onClick={pet.reset}>
+            <ResetIcon />
+          </IconButton>
         </div>
       </main>
     </>
