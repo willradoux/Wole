@@ -1,4 +1,4 @@
-# 🐳 wole — estudos com Docker
+# 🐳 Wole — estudos com Docker
 
 Repositório onde estou praticando **Docker**. A ideia foi pegar um app front-end de verdade
 e colocar ele pra rodar inteiro dentro de um container, do build até o servidor.
