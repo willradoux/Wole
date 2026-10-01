@@ -6,7 +6,7 @@ const DRAIN_AFTER_SECONDS = 8;
 const SLEEP_AFTER_SECONDS = 20;
 const EXPRESSION_MS = 900;
 
-export function getMood(water) {
+function getMood(water) {
   if (water === 0) return "sad";
   if (water < 50) return "calm";
   if (water < 100) return "happy";
