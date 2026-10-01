@@ -20,6 +20,7 @@
 /* quadrado com canto bem arredondado, tipo ícone de app */
 .icon-button--lg { width: 80px; height: 80px; border-radius: 26px; }
 .icon-button--md { width: 60px; height: 60px; border-radius: 20px; }
+.icon-button--sm { width: 48px; height: 48px; border-radius: 16px; }
 
 .icon-button--primary {
   background: var(--accent);
@@ -78,6 +79,13 @@
   transition:
     opacity 0.15s var(--ease-standard),
     transform 0.15s var(--ease-standard);
+}
+
+/* dica pro lado esquerdo, pros botões que ficam no canto direito da tela */
+.icon-button__tooltip--left {
+  left: auto;
+  right: calc(100% + 12px);
+  transform: translate(4px, -50%);
 }
 
 /* aparece com um atrasinho, igual no macOS. no toque não tem dica, ela ficaria presa na tela */
