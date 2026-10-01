@@ -23,6 +23,13 @@
   visibility: hidden;
 }
 
+@media (orientation: landscape) and (max-height: 560px) {
+  .app {
+    flex-direction: row;
+    gap: var(--space-lg);
+  }
+}
+
 .app__actions {
   display: flex;
   flex-direction: column;

@@ -36,9 +36,11 @@
   box-shadow: 0 8px 24px rgba(30, 60, 120, 0.12);
 }
 
-.icon-button:hover {
-  transform: scale(1.04);
-  filter: brightness(1.1);
+@media (hover: hover) {
+  .icon-button:hover {
+    transform: scale(1.04);
+    filter: brightness(1.1);
+  }
 }
 
 .icon-button:active {
@@ -78,10 +80,17 @@
     transform 0.15s var(--ease-standard);
 }
 
-/* aparece com um atrasinho, igual no macOS */
-.icon-button:hover .icon-button__tooltip,
+/* aparece com um atrasinho, igual no macOS. no toque não tem dica, ela ficaria presa na tela */
 .icon-button:focus-visible .icon-button__tooltip {
   opacity: 1;
   transform: translate(0, -50%);
   transition-delay: 0.4s;
+}
+
+@media (hover: hover) {
+  .icon-button:hover .icon-button__tooltip {
+    opacity: 1;
+    transform: translate(0, -50%);
+    transition-delay: 0.4s;
+  }
 }

@@ -12,9 +12,12 @@
   .pet__layer (2ª)       -> flutuar (useWhaleMotion, todo frame)
   .pet__layer--reaction  -> pulo e carinho (Web Animations, somado por cima)
 */
+/* a largura também depende da altura da tela, senão em tela baixa os botões saem pra fora.
+   1.09 = 240/220, a proporção do desenho. os 290px são a sombra + espaços + botões embaixo */
 .pet__stage {
   position: relative;
-  width: min(320px, 70vw);
+  width: min(320px, 70vw, calc((100dvh - 290px) * 1.09));
+  min-width: 140px;
   cursor: pointer;
   border-radius: 40%;
   -webkit-tap-highlight-color: transparent;
@@ -43,8 +46,18 @@
   transition: transform 0.5s var(--ease-spring);
 }
 
-.pet__stage:hover .whale {
-  transform: scale(1.04, 0.96) translateY(4px);
+/* só em aparelho com mouse: no toque o hover fica "preso" depois que solta o dedo */
+@media (hover: hover) {
+  .pet__stage:hover .whale {
+    transform: scale(1.04, 0.96) translateY(4px);
+  }
+}
+
+/* celular deitado: os botões vão pro lado, então ela pode usar quase toda a altura */
+@media (orientation: landscape) and (max-height: 560px) {
+  .pet__stage {
+    width: min(320px, 45vw, calc((100dvh - 70px) * 1.09));
+  }
 }
 
 /* sem blur aqui de propósito, só o gradiente já fica suave e é bem mais leve */
