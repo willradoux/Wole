@@ -36,7 +36,6 @@
   top: max(var(--space-md), env(safe-area-inset-top));
   right: max(var(--space-md), env(safe-area-inset-right));
   z-index: 1;
-  color: var(--text-primary);
   /* anima com translate (e não transform) pra não travar o efeito de hover do botão */
   animation: github-in 0.6s var(--ease-standard) 3.2s both;
 }

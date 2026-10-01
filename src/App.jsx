@@ -18,7 +18,7 @@ export default function App() {
       <IconButton
         href="https://github.com/willradoux/Wole"
         label="Ver no GitHub"
-        variant="secondary"
+        variant="dark"
         size="sm"
         tooltip="left"
         className="app__github"
