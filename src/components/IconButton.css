@@ -37,12 +37,6 @@
   box-shadow: 0 8px 24px rgba(30, 60, 120, 0.12);
 }
 
-.icon-button--dark {
-  background: var(--text-primary);
-  color: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-}
-
 @media (hover: hover) {
   .icon-button:hover {
     transform: scale(1.04);
