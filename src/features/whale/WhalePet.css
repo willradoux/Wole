@@ -6,10 +6,10 @@
 }
 
 /*
-  Layers, outside in:
-  .pet__stage            -> click / keyboard target
-  .pet__layer            -> continuous float (useWhaleMotion, every frame)
-  .pet__layer--reaction  -> jump and squish (Web Animations, added on top)
+  camadas, de fora pra dentro:
+  .pet__stage            -> recebe o clique / teclado
+  .pet__layer            -> flutuar (useWhaleMotion, todo frame)
+  .pet__layer--reaction  -> pulo e carinho (Web Animations, somado por cima)
 */
 .pet__stage {
   position: relative;
@@ -32,7 +32,7 @@
   transform-origin: 50% 85%;
 }
 
-/* Hover: she leans in, waiting for a pet */
+/* no hover ela se encolhe esperando carinho */
 .pet__stage .whale {
   transition: transform 0.5s var(--ease-spring);
 }
@@ -41,7 +41,7 @@
   transform: scale(1.04, 0.96) translateY(4px);
 }
 
-/* No CSS blur here on purpose: the gradient alone is soft enough and stays cheap. */
+/* sem blur aqui de propósito, só o gradiente já fica suave e é bem mais leve */
 .pet__shadow {
   width: 55%;
   height: 24px;

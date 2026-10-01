@@ -1,14 +1,12 @@
 import { useEffect, useRef } from "react";
 
-// Where the face sits inside the whale's viewBox (0 -40 240 220).
+// posição do rosto dentro do viewBox da baleia (0 -40 240 220)
 const FACE = { x: 120 / 240, y: (102 + 40) / 220 };
 const MAX_OFFSET = 6;
 const REACH = 120;
 
-/**
- * Tracks the pointer and returns a ref with the eye offset it wants.
- * It's a ref, not state: the motion loop reads it every frame without re-rendering.
- */
+// guarda pra onde os olhos devem olhar. é ref e não state de propósito:
+// o loop lê isso todo frame e não precisa re-renderizar nada
 export function useGaze(anchorRef) {
   const target = useRef({ x: 0, y: 0 });
 

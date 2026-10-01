@@ -5,10 +5,8 @@ import { useGaze } from "./useGaze";
 const TAU = Math.PI * 2;
 const RESTING = { x: 0, y: 0 };
 
-/**
- * Drives the whale at 60fps: floating, ground shadow, tail, fins and eyes.
- * Writes straight to the DOM through refs so React never re-renders per frame.
- */
+// anima a Wole a 60fps (flutuar, sombra, rabo, nadadeiras e olhos).
+// mexe direto no DOM pelas refs pra não re-renderizar o React a cada frame
 export function useWhaleMotion({ mood, asleep, reaction }) {
   const stageRef = useRef(null);
   const floatRef = useRef(null);
@@ -29,8 +27,8 @@ export function useWhaleMotion({ mood, asleep, reaction }) {
     let last = performance.now();
     let frame;
 
-    // The SVG keeps the same nodes across renders, so look them up once
-    // and only again if React ever swaps them out.
+    // os elementos do SVG são sempre os mesmos, então busca uma vez só
+    // (e de novo só se o React trocar eles)
     function getParts() {
       if (parts?.tail.isConnected) return parts;
       const svg = stageRef.current;
@@ -57,7 +55,7 @@ export function useWhaleMotion({ mood, asleep, reaction }) {
 
       const bob = Math.sin(phase) * current.amp * still;
       const y = current.offset - bob;
-      const tilt = Math.sin(phase - 0.7) * current.tilt * still; // lagging = more organic
+      const tilt = Math.sin(phase - 0.7) * current.tilt * still; // atrasadinho fica mais natural
       const stretch = Math.cos(phase) * 0.012 * (current.amp / 8) * still;
 
       floatRef.current.style.transform =
@@ -89,7 +87,7 @@ export function useWhaleMotion({ mood, asleep, reaction }) {
     return () => cancelAnimationFrame(frame);
   }, [gaze]);
 
-  // Reactions play on their own layer so they add up with the float.
+  // reações rodam numa camada separada pra somar com o flutuar
   useEffect(() => {
     const el = reactionRef.current;
     if (!reaction || !el?.animate || prefersReducedMotion()) return;

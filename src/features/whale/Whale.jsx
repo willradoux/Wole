@@ -35,10 +35,8 @@ function HappyEyes() {
   ));
 }
 
-/**
- * Pure drawing. Every expression lives in the eyes; movement is handled by useWhaleMotion.
- * Memoized so the per-second pet clock never repaints the SVG for nothing.
- */
+// só o desenho. quem mexe é o useWhaleMotion
+// memo pra não redesenhar o SVG toda vez que o relógio do pet atualiza
 export const Whale = memo(function Whale({ mood, expression }) {
   const asleep = expression === "asleep";
   const joyful = !asleep && (mood === "ecstatic" || expression === "excited" || expression === "loved");
@@ -57,14 +55,14 @@ export const Whale = memo(function Whale({ mood, expression }) {
           <stop offset="1" stopColor="#5a9fe6" />
         </linearGradient>
 
-        {/* Darker rim = volume */}
+        {/* borda mais escura dá o volume */}
         <radialGradient id="whale-depth" gradientUnits="userSpaceOnUse" cx="112" cy="92" r="125">
           <stop offset="0.5" stopColor="#1d3f7a" stopOpacity="0" />
           <stop offset="1" stopColor="#1d3f7a" stopOpacity="0.4" />
         </radialGradient>
 
-        {/* Soft matte light. A gradient instead of an SVG blur filter: the blur
-            was being recomputed every frame and was the main cause of jank. */}
+        {/* luz fosca em cima. antes era um blur no SVG mas ele era recalculado
+            todo frame e era o que mais travava, gradiente resolve igual */}
         <radialGradient id="whale-light">
           <stop offset="0" stopColor="#fff" stopOpacity="0.6" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
@@ -104,7 +102,7 @@ export const Whale = memo(function Whale({ mood, expression }) {
 
       <path className="whale__tail" d={TAIL} fill="url(#whale-tail)" />
 
-      {/* The rotate stays on the ellipse; the animated transform goes on the <g>. */}
+      {/* o rotate fica na ellipse e a animação no <g>, senão um sobrescreve o outro */}
       <g className="whale__fin whale__fin--left">
         <ellipse cx="26" cy="146" rx="16" ry="8" fill="#5f9fe2" transform="rotate(-25 26 146)" />
       </g>

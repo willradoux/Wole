@@ -14,7 +14,7 @@ const BUBBLES = Array.from({ length: 12 }, (_, i) => ({
   delay: (i * 0.7) % 6,
 }));
 
-// Two identical halves side by side, so sliding it by -50% loops seamlessly.
+// desenha duas metades iguais, aí é só andar -50% que o loop fica sem emenda
 function wavePath(crests, height) {
   const width = 2400;
   const step = width / (crests * 2);

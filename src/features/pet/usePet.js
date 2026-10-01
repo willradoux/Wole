@@ -13,13 +13,13 @@ export function getMood(water) {
   return "ecstatic";
 }
 
-/** Everything the whale "feels". The UI only reads from here and calls the actions. */
+// tudo que a Wole sente fica aqui, os componentes só leem e chamam as ações
 export function usePet() {
   const [clicks, setClicks] = useState(0);
   const [water, setWater] = useState(0);
-  const [expression, setExpression] = useState(null); // "excited" | "loved" | null
+  const [expression, setExpression] = useState(null); // "excited" | "loved"
   const [asleep, setAsleep] = useState(false);
-  const [reaction, setReaction] = useState(null); // { type, id }, replayed on every change
+  const [reaction, setReaction] = useState(null); // { type, id } -> o id muda pra animação rodar de novo
 
   const lastInteraction = useRef(Date.now());
   const expressionTimer = useRef();
@@ -56,7 +56,7 @@ export function usePet() {
     setWater(0);
   }, [wake]);
 
-  // Left alone, the sea slowly dries up and eventually she dozes off.
+  // se ninguém mexer o mar vai secando e depois ela dorme
   useEffect(() => {
     const id = setInterval(() => {
       const idle = (Date.now() - lastInteraction.current) / 1000;

@@ -4,7 +4,7 @@
   overflow: visible;
 }
 
-/* Tail and fins: the angle comes from useWhaleMotion, CSS only sets the pivot. */
+/* o ângulo vem do useWhaleMotion, aqui é só o ponto de giro */
 .whale__tail {
   transform-box: fill-box;
   transform-origin: left bottom;
@@ -17,7 +17,7 @@
 .whale__fin--left  { transform-origin: right center; }
 .whale__fin--right { transform-origin: left center; }
 
-/* ---------- Eyes: every expression lives here ---------- */
+/* ---------- olhos (todas as expressões ficam aqui) ---------- */
 .whale__eye {
   transform-box: fill-box;
   transform-origin: center;
@@ -27,7 +27,7 @@
 .whale--sad .whale__eye--left  { transform: translateY(5px) scaleY(0.65) rotate(16deg); }
 .whale--sad .whale__eye--right { transform: translateY(5px) scaleY(0.65) rotate(-16deg); }
 
-/* Closes slowly, like dozing off */
+/* fecha devagar, tipo pegando no sono */
 .whale--asleep .whale__eye {
   transform: translateY(6px) scale(1.2, 0.14);
   transition-duration: 1.4s;
@@ -56,7 +56,7 @@
   animation: whale-spout 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-/* Fast close, slower open */
+/* fecha rápido e abre mais devagar */
 @keyframes whale-blink {
   0%, 90%   { transform: scaleY(1); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5); }
   93%       { transform: scaleY(0.08); animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1); }

@@ -1,4 +1,4 @@
-/* Always full height; it rises with transform, which is much cheaper than animating height. */
+/* o mar tem sempre a altura da tela e sobe com transform, animar height travava */
 .ocean {
   position: fixed;
   inset: 0;
@@ -17,8 +17,7 @@
   animation: ocean-swell 4s ease-in-out infinite;
 }
 
-/* Covers the anti-aliased bottom row of the front wave, which let the lighter
-   waves behind it show through as a thin line. */
+/* tampa a borda de baixo da onda da frente, senão aparecia uma linha clarinha */
 .ocean__waves::after {
   content: "";
   position: absolute;
@@ -48,7 +47,7 @@
   overflow: hidden;
 }
 
-/* Bubbles travel the whole screen; whatever goes past the surface gets clipped. */
+/* as bolhas sobem a tela toda, o overflow corta o que passa da superfície */
 .ocean__bubble {
   position: absolute;
   bottom: -20px;

@@ -1,7 +1,7 @@
-// How she floats in each state. The loop eases between these numbers every frame,
-// so a mood change never cuts the animation.
-//   amp: bob height (px)   speed: bobs per second   tilt: degrees
-//   offset: resting height (px)   tail / fins: swing in degrees
+// jeito dela flutuar em cada humor. o loop vai se aproximando desses valores
+// aos poucos, por isso a troca de humor não dá tranco
+// amp: altura do balanço (px) | speed: balanços por segundo | tilt: inclinação (graus)
+// offset: altura parada (px) | tail / fins: quanto o rabo e as nadadeiras balançam (graus)
 export const RHYTHMS = {
   sad:      { amp: 3,  speed: 0.2,  tilt: 2,   offset: 7,  tail: 3,   fins: 5 },
   calm:     { amp: 8,  speed: 0.33, tilt: 3,   offset: 0,  tail: 7,   fins: 12 },
@@ -10,8 +10,8 @@ export const RHYTHMS = {
   asleep:   { amp: 2,  speed: 0.14, tilt: 1.5, offset: 8,  tail: 1.5, fins: 3 },
 };
 
-// One-shot reactions. They start and end at identity because they're layered
-// on top of the float with `composite: "add"` — fast clicks stack instead of snapping.
+// pulo e carinho. começam e terminam no zero porque são somados por cima do
+// flutuar (composite: "add"), aí clicar rápido acumula em vez de resetar
 export const REACTIONS = {
   jump: {
     duration: 850,
@@ -39,6 +39,6 @@ export const REACTIONS = {
 export const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Frame-rate independent easing: `rate` is how much of the gap is left after one second.
+// suaviza igual em qualquer fps. rate = quanto da distância ainda falta depois de 1s
 export const approach = (current, target, rate, dt) =>
   current + (target - current) * (1 - Math.pow(rate, dt));
