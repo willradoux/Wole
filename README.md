@@ -5,7 +5,25 @@ e colocar ele pra rodar inteiro dentro de um container, do build até o servidor
 
 O app de exemplo é a **Wole**, uma baleia de estimação feita em React (ela está explicada no final).
 
-## O que pratiquei aqui
+## 📍 Onde estou nos estudos
+
+> **Etapa atual: 3 — Docker Compose**
+
+| # | Etapa | Status | O que entra |
+|:-:|---|:-:|---|
+| 1 | Fundamentos | ✅ | imagem x container, `run`, `ps`, `logs`, `exec`, `stop`, `rm` |
+| 2 | Imagens e Dockerfile | ✅ | `Dockerfile`, multi-stage build, cache de camadas, `.dockerignore` |
+| 3 | **Docker Compose** | 🔄 | `docker-compose.yml` com um serviço (próximo: mais de um serviço) |
+| 4 | Variáveis de ambiente | ⬜ | `ENV`, `-e`, arquivo `.env` |
+| 5 | Volumes | ⬜ | guardar dados fora do container |
+| 6 | Redes | ⬜ | containers conversando entre si (ex: front + API + banco) |
+| 7 | Healthcheck | ⬜ | `HEALTHCHECK` e `depends_on` com condição |
+| 8 | Publicar a imagem | ⬜ | Docker Hub / GitHub Container Registry |
+| 9 | CI | ⬜ | build da imagem automático no GitHub Actions |
+
+✅ feito · 🔄 estudando agora · ⬜ próximos passos
+
+## O que já pratiquei aqui
 
 - Escrever um `Dockerfile` do zero
 - **Multi-stage build**: uma imagem pra buildar e outra, bem menor, pra servir
