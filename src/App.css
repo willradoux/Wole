@@ -36,6 +36,11 @@
   top: max(var(--space-md), env(safe-area-inset-top));
   right: max(var(--space-md), env(safe-area-inset-right));
   z-index: 1;
+  /* redondo e sem sombra, mais discreto. 44px é o mínimo pra tocar fácil */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: none;
   /* anima com translate (e não transform) pra não travar o efeito de hover do botão */
   animation: github-in 0.6s var(--ease-standard) 3.2s both;
 }
