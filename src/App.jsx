@@ -1,46 +1,32 @@
-import { useState } from "react";
-
-const comandos = [
-  { cmd: "docker build -t docker-lab .", desc: "Monta a imagem a partir do Dockerfile" },
-  { cmd: "docker run -d -p 8080:80 --name meu-app docker-lab", desc: "Sobe um container da imagem" },
-  { cmd: "docker ps", desc: "Lista os containers rodando" },
-  { cmd: "docker logs meu-app", desc: "Mostra os logs do container" },
-  { cmd: "docker stop meu-app", desc: "Para o container" },
-  { cmd: "docker rm meu-app", desc: "Apaga o container" },
-];
+import { Button } from "./components/Button";
+import { Ocean } from "./features/ocean/Ocean";
+import { usePet } from "./features/pet/usePet";
+import { WhalePet } from "./features/whale/WhalePet";
+import "./App.css";
 
 export default function App() {
-  const [cliques, setCliques] = useState(0);
-  const [copiado, setCopiado] = useState(null);
-
-  function copiar(cmd) {
-    navigator.clipboard?.writeText(cmd);
-    setCopiado(cmd);
-    setTimeout(() => setCopiado(null), 1200);
-  }
+  const pet = usePet();
 
   return (
-    <main>
-      <h1>🐳 Docker Lab</h1>
-      <p className="sub">
-        Se você está vendo isso, esse app React está rodando <strong>dentro de um container</strong>.
-      </p>
+    <>
+      <Ocean level={pet.water} />
 
-      <button className="contador" onClick={() => setCliques(cliques + 1)}>
-        Cliques: {cliques}
-      </button>
+      <main className="app">
+        <WhalePet
+          mood={pet.mood}
+          expression={pet.expression}
+          asleep={pet.asleep}
+          reaction={pet.reaction}
+          onPet={pet.pet}
+        />
 
-      <h2>Colinha de comandos</h2>
-      <ul>
-        {comandos.map(({ cmd, desc }) => (
-          <li key={cmd} onClick={() => copiar(cmd)} title="Clique pra copiar">
-            <code>{cmd}</code>
-            <span>{copiado === cmd ? "✅ copiado!" : desc}</span>
-          </li>
-        ))}
-      </ul>
-
-      <footer>Build: {import.meta.env.MODE}</footer>
-    </main>
+        <div className="app__actions">
+          <Button onClick={pet.feed}>Cliques: {pet.clicks}</Button>
+          <Button variant="secondary" onClick={pet.reset} disabled={!pet.canReset}>
+            ↺ Resetar
+          </Button>
+        </div>
+      </main>
+    </>
   );
 }

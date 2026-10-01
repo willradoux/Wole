@@ -1,0 +1,75 @@
+.whale {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+/* Tail and fins: the angle comes from useWhaleMotion, CSS only sets the pivot. */
+.whale__tail {
+  transform-box: fill-box;
+  transform-origin: left bottom;
+}
+
+.whale__fin {
+  transform-box: fill-box;
+}
+
+.whale__fin--left  { transform-origin: right center; }
+.whale__fin--right { transform-origin: left center; }
+
+/* ---------- Eyes: every expression lives here ---------- */
+.whale__eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.6s var(--ease-spring);
+}
+
+.whale--sad .whale__eye--left  { transform: translateY(5px) scaleY(0.65) rotate(16deg); }
+.whale--sad .whale__eye--right { transform: translateY(5px) scaleY(0.65) rotate(-16deg); }
+
+/* Closes slowly, like dozing off */
+.whale--asleep .whale__eye {
+  transform: translateY(6px) scale(1.2, 0.14);
+  transition-duration: 1.4s;
+  transition-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.whale__blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: whale-blink 5s infinite;
+}
+
+.whale--asleep .whale__blink {
+  animation: none;
+}
+
+.whale__eye-happy {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: whale-eye-pop 0.45s var(--ease-spring);
+}
+
+.whale__spout {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: whale-spout 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* Fast close, slower open */
+@keyframes whale-blink {
+  0%, 90%   { transform: scaleY(1); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5); }
+  93%       { transform: scaleY(0.08); animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1); }
+  97%, 100% { transform: scaleY(1); }
+}
+
+@keyframes whale-eye-pop {
+  from { transform: scale(0.4, 0.2); opacity: 0.4; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes whale-spout {
+  0%   { transform: scale(0.3, 0); opacity: 1; }
+  45%  { transform: scale(1, 1.08); opacity: 1; }
+  100% { transform: scale(1.25, 1); opacity: 0; }
+}

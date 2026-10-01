@@ -1,0 +1,77 @@
+/* Always full height; it rises with transform, which is much cheaper than animating height. */
+.ocean {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(var(--ocean-top), var(--ocean-bottom));
+  transition: transform 1.2s cubic-bezier(0.25, 1.15, 0.4, 1);
+  will-change: transform;
+}
+
+.ocean__waves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 2px);
+  height: 70px;
+  overflow: hidden;
+  animation: ocean-swell 4s ease-in-out infinite;
+}
+
+/* Covers the anti-aliased bottom row of the front wave, which let the lighter
+   waves behind it show through as a thin line. */
+.ocean__waves::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--ocean-top);
+}
+
+.ocean__wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  animation: ocean-drift linear infinite;
+  will-change: transform;
+}
+
+.ocean__wave--back  { fill: var(--ocean-wave-back); opacity: 0.6; }
+.ocean__wave--mid   { fill: var(--ocean-wave-mid); opacity: 0.8; }
+.ocean__wave--front { fill: var(--ocean-top); }
+
+.ocean__depths {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Bubbles travel the whole screen; whatever goes past the surface gets clipped. */
+.ocean__bubble {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  animation: ocean-bubble linear infinite;
+  will-change: transform;
+}
+
+@keyframes ocean-swell {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 8px, 0); }
+}
+
+@keyframes ocean-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes ocean-bubble {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translate3d(12px, -50vh, 0); }
+  100% { transform: translate3d(-8px, -100vh, 0); opacity: 1; }
+}

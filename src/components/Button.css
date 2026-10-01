@@ -1,0 +1,44 @@
+.button {
+  min-height: 44px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  font: 500 17px/1 var(--font-sans);
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition:
+    transform 0.3s var(--ease-spring),
+    filter 0.2s var(--ease-standard),
+    background 0.2s var(--ease-standard),
+    opacity 0.2s var(--ease-standard);
+}
+
+.button:hover:not(:disabled) {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.button--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0, 113, 227, 0.3);
+}
+
+.button--secondary {
+  background: var(--fill-tertiary);
+  color: var(--accent);
+}

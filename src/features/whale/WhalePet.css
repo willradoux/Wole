@@ -1,0 +1,97 @@
+.pet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+  Layers, outside in:
+  .pet__stage            -> click / keyboard target
+  .pet__layer            -> continuous float (useWhaleMotion, every frame)
+  .pet__layer--reaction  -> jump and squish (Web Animations, added on top)
+*/
+.pet__stage {
+  position: relative;
+  width: min(320px, 70vw);
+  cursor: pointer;
+  border-radius: 40%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pet__stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 8px;
+}
+
+.pet__layer {
+  will-change: transform;
+}
+
+.pet__layer--reaction {
+  transform-origin: 50% 85%;
+}
+
+/* Hover: she leans in, waiting for a pet */
+.pet__stage .whale {
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.pet__stage:hover .whale {
+  transform: scale(1.04, 0.96) translateY(4px);
+}
+
+/* No CSS blur here on purpose: the gradient alone is soft enough and stays cheap. */
+.pet__shadow {
+  width: 55%;
+  height: 24px;
+  margin-top: var(--space-xs);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(70, 120, 200, 0.32), rgba(70, 120, 200, 0.12) 60%, transparent);
+  will-change: transform, opacity;
+}
+
+.pet__zzz {
+  position: absolute;
+  top: 10px;
+  left: 55%;
+  height: 60px;
+  pointer-events: none;
+}
+
+.pet__zzz span {
+  position: absolute;
+  font-weight: 700;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: pet-zzz 3s cubic-bezier(0.25, 0.6, 0.4, 1) infinite;
+}
+
+.pet__zzz span:nth-child(1) { font-size: 1rem; }
+.pet__zzz span:nth-child(2) { font-size: 1.4rem; animation-delay: 1s; }
+.pet__zzz span:nth-child(3) { font-size: 1.9rem; animation-delay: 2s; }
+
+.pet__hearts span {
+  position: absolute;
+  top: 10%;
+  font-size: 1.6rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: pet-heart 2.2s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+}
+
+.pet__hearts span:nth-child(1) { left: 5%; }
+.pet__hearts span:nth-child(2) { left: 45%; animation-delay: 0.5s; }
+.pet__hearts span:nth-child(3) { left: 85%; animation-delay: 1s; }
+
+@keyframes pet-zzz {
+  0%   { transform: translate3d(0, 40px, 0) rotate(-10deg) scale(0.6); opacity: 0; }
+  25%  { opacity: 1; }
+  100% { transform: translate3d(44px, -24px, 0) rotate(10deg) scale(1); opacity: 0; }
+}
+
+@keyframes pet-heart {
+  0%   { transform: translate3d(0, 0, 0) scale(0.4); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate3d(0, -100px, 0) scale(1.15); opacity: 0; }
+}
