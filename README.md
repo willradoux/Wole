@@ -1,12 +1,30 @@
-# 🐳 wsdfs — Whale Pet
+# 🐳 Wole
 
-Um bichinho virtual em React: uma baleia que vive num oceano que você enche com cliques.
+A **Wole** é uma baleia de estimação feita em React: ela vive num oceano que você enche com cliques.
 O projeto nasceu pra praticar **Docker** — o app é buildado e servido inteiro dentro de um container.
+
+<p align="center">
+  <img src="docs/enchendo-o-mar.gif" alt="Wole pulando enquanto o mar enche a cada clique" width="420" />
+</p>
+
+## Animações
+
+| Carinho | Olhos seguindo o mouse | Dormindo |
+|:---:|:---:|:---:|
+| <img src="docs/carinho.gif" alt="Wole recebendo carinho e soltando corações" width="260" /> | <img src="docs/olhar.gif" alt="Olhos da Wole acompanhando o cursor" width="260" /> | <img src="docs/dormindo.gif" alt="Wole dormindo com Zzz" width="260" /> |
+
+## Humores
+
+A Wole não tem boca: todo o humor dela aparece nos olhos e no jeito de flutuar.
+
+| Triste | Calma | Feliz | Eufórica |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/triste.png" alt="Wole triste, sem água" width="190" /> | <img src="docs/calma.png" alt="Wole calma, com pouca água" width="190" /> | <img src="docs/feliz.png" alt="Wole feliz, com o mar pela metade" width="190" /> | <img src="docs/euforica.png" alt="Wole eufórica, com o mar cheio" width="190" /> |
 
 ## O que ela faz
 
 - **Cliques** enchem o mar (10% por clique). A cada clique ela dá um pulinho e solta um esguicho.
-- **Clicar nela** é fazer carinho: ela se espreme, fecha os olhinhos `^ ^` e solta corações.
+- **Clicar na Wole** é fazer carinho: ela se espreme, fecha os olhinhos `^ ^` e solta corações.
 - **Humor pelo nível do mar** — tudo expresso só pelos olhos:
 
   | Mar | Humor | Olhos |
@@ -33,8 +51,8 @@ Abre http://localhost:8080. Pra derrubar: `docker compose down`.
 Ou sem compose:
 
 ```bash
-docker build -t whale-pet .
-docker run -d -p 8080:80 --name whale-pet whale-pet
+docker build -t wole .
+docker run -d -p 8080:80 --name wole wole
 ```
 
 ### Sem Docker (modo dev)
@@ -58,6 +76,7 @@ quando as dependências mudam.
 ## Estrutura
 
 ```
+docs/                         # prints e GIFs deste README
 src/
 ├── main.jsx                  # entrada: monta o App e carrega os estilos globais
 ├── App.jsx                   # composição da tela (oceano + baleia + botões)
@@ -71,7 +90,7 @@ src/
     │   └── usePet.js         # estado do bichinho: água, humor, sono, reações
     ├── whale/
     │   ├── Whale.jsx         # o desenho em SVG (só desenha, não se mexe)
-    │   ├── WhalePet.jsx      # baleia + sombra + Zzz + corações
+    │   ├── WhalePet.jsx      # Wole + sombra + Zzz + corações
     │   ├── useWhaleMotion.js # loop de animação a 60fps
     │   ├── useGaze.js        # olhos seguindo o ponteiro
     │   └── motion.js         # ritmos por humor e animações de reação
@@ -79,7 +98,7 @@ src/
         └── Ocean.jsx         # mar, ondas e bolhas
 ```
 
-A regra é simples: **`usePet` decide o que ela sente, os componentes só desenham**.
+A regra é simples: **`usePet` decide o que a Wole sente, os componentes só desenham**.
 
 ## Notas de performance
 
@@ -90,7 +109,7 @@ A animação roda liso porque:
   são interpolados aos poucos, então nada "corta".
 - Pulos e carinho usam a **Web Animations API** com `composite: "add"`: somam por cima do flutuar,
   então cliques rápidos acumulam em vez de reiniciar a animação.
-- O SVG da baleia é `memo` e não usa filtros de blur (que seriam recalculados a cada quadro,
+- O SVG da Wole é `memo` e não usa filtros de blur (que seriam recalculados a cada quadro,
   já que o rabo, as nadadeiras e os olhos se mexem). O volume vem só de gradientes.
 - O mar sobe com `transform` em vez de `height`, e ondas e bolhas animam com `translate3d`.
 - Quem tem *reduzir movimento* ativado no sistema recebe a versão sem animação.

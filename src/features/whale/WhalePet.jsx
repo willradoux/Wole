@@ -28,7 +28,7 @@ export function WhalePet({ mood, expression, asleep, reaction, onPet }) {
         className="pet__stage"
         role="button"
         tabIndex={0}
-        aria-label="Fazer carinho na baleia"
+        aria-label="Fazer carinho na Wole"
         onClick={onPet}
         onKeyDown={handleKeyDown}
       >
