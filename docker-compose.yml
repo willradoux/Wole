@@ -1,0 +1,5 @@
+services:
+  web:
+    build: .            # usa o Dockerfile desta pasta
+    ports:
+      - "8080:80"       # porta_do_pc:porta_do_container
