@@ -134,7 +134,7 @@ que você enche com cliques. Ela não tem boca, o humor dela aparece todo nos ol
 
 | Sem água | Mar pela metade | Mar cheio |
 |:---:|:---:|:---:|
-| <img src="docs/triste.png" alt="Wole triste, sem água" width="260" /> | <img src="docs/feliz.png" alt="Wole feliz, com o mar pela metade" width="260" /> | <img src="docs/euforica.png" alt="Wole eufórica, com o mar cheio" width="260" /> |
+| <img src="docs/wole-sem-agua.png" alt="Wole triste, sem água" width="260" /> | <img src="docs/wole-mar-metade.png" alt="Wole feliz, com o mar pela metade" width="260" /> | <img src="docs/wole-mar-cheio.png" alt="Wole eufórica, com o mar cheio" width="260" /> |
 
 - Cada clique enche 10% do mar e ela dá um pulinho
 - Clicar nela é fazer carinho
