@@ -2,8 +2,13 @@ import { Whale } from "./Whale";
 import { useWhaleMotion } from "./useWhaleMotion";
 import "./WhalePet.css";
 
-export function WhalePet({ mood, expression, asleep, reaction, onPet }) {
-  const { stageRef, floatRef, reactionRef, shadowRef } = useWhaleMotion({ mood, asleep, reaction });
+export function WhalePet({ mood, expression, asleep, reaction, intro = false, onPet }) {
+  const { stageRef, floatRef, reactionRef, shadowRef } = useWhaleMotion({
+    mood,
+    asleep,
+    reaction,
+    still: intro,
+  });
   const showHearts = !asleep && (mood === "ecstatic" || expression === "loved");
 
   function handleKeyDown(event) {
@@ -14,7 +19,7 @@ export function WhalePet({ mood, expression, asleep, reaction, onPet }) {
   }
 
   return (
-    <div className="pet">
+    <div className={`pet ${intro ? "pet--intro" : ""}`}>
       {asleep && (
         <div className="pet__zzz" aria-hidden="true">
           <span>z</span>
@@ -32,9 +37,11 @@ export function WhalePet({ mood, expression, asleep, reaction, onPet }) {
         onClick={onPet}
         onKeyDown={handleKeyDown}
       >
-        <div ref={floatRef} className="pet__layer">
-          <div ref={reactionRef} className="pet__layer pet__layer--reaction">
-            <Whale mood={mood} expression={expression} />
+        <div className="pet__layer pet__layer--intro">
+          <div ref={floatRef} className="pet__layer">
+            <div ref={reactionRef} className="pet__layer pet__layer--reaction">
+              <Whale mood={mood} expression={expression} />
+            </div>
           </div>
         </div>
 

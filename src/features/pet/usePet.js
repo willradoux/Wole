@@ -48,6 +48,10 @@ export function usePet() {
     react("loved", "squish");
   }, [wake, react]);
 
+  const greet = useCallback(() => {
+    react("excited", "jump");
+  }, [react]);
+
   const reset = useCallback(() => {
     wake();
     clearTimeout(expressionTimer.current);
@@ -82,6 +86,7 @@ export function usePet() {
     canReset: clicks > 0 || water > 0,
     feed,
     pet,
+    greet,
     reset,
   };
 }

@@ -8,7 +8,8 @@
 /*
   camadas, de fora pra dentro:
   .pet__stage            -> recebe o clique / teclado
-  .pet__layer            -> flutuar (useWhaleMotion, todo frame)
+  .pet__layer--intro     -> tamanho grande da intro
+  .pet__layer (2ª)       -> flutuar (useWhaleMotion, todo frame)
   .pet__layer--reaction  -> pulo e carinho (Web Animations, somado por cima)
 */
 .pet__stage {
@@ -30,6 +31,20 @@
 
 .pet__layer--reaction {
   transform-origin: 50% 85%;
+}
+
+/* intro: começa grande e encolhe pro tamanho normal com uma mola */
+.pet__layer--intro {
+  transition: transform 0.75s var(--ease-spring);
+}
+
+.pet--intro .pet__layer--intro {
+  transform: scale(1.45);
+}
+
+/* a sombra só aparece quando ela já está no tamanho normal */
+.pet--intro .pet__shadow {
+  visibility: hidden;
 }
 
 /* no hover ela se encolhe esperando carinho */

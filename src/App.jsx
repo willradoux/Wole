@@ -1,5 +1,6 @@
 import { IconButton } from "./components/IconButton";
 import { DropIcon, ResetIcon } from "./components/icons";
+import { useIntro } from "./features/intro/useIntro";
 import { Ocean } from "./features/ocean/Ocean";
 import { usePet } from "./features/pet/usePet";
 import { WhalePet } from "./features/whale/WhalePet";
@@ -7,6 +8,7 @@ import "./App.css";
 
 export default function App() {
   const pet = usePet();
+  const { phase } = useIntro({ onGreet: pet.greet });
 
   return (
     <>
@@ -15,9 +17,10 @@ export default function App() {
       <main className="app">
         <WhalePet
           mood={pet.mood}
-          expression={pet.expression}
+          expression={phase === "sleeping" ? "asleep" : pet.expression}
           asleep={pet.asleep}
           reaction={pet.reaction}
+          intro={phase !== "done"}
           onPet={pet.pet}
         />
 

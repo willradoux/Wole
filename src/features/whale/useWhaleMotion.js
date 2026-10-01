@@ -7,19 +7,19 @@ const RESTING = { x: 0, y: 0 };
 
 // anima a Wole a 60fps (flutuar, sombra, rabo, nadadeiras e olhos).
 // mexe direto no DOM pelas refs pra não re-renderizar o React a cada frame
-export function useWhaleMotion({ mood, asleep, reaction }) {
+export function useWhaleMotion({ mood, asleep, reaction, still }) {
   const stageRef = useRef(null);
   const floatRef = useRef(null);
   const reactionRef = useRef(null);
   const shadowRef = useRef(null);
 
   const gaze = useGaze(stageRef);
-  const state = useRef({ mood, asleep });
-  state.current = { mood, asleep };
+  const state = useRef({ mood, asleep, still });
+  state.current = { mood, asleep, still };
 
   useEffect(() => {
     const still = prefersReducedMotion() ? 0 : 1;
-    const current = { ...RHYTHMS.sad };
+    const current = { ...RHYTHMS.still };
     const eyes = { x: 0, y: 0 };
     let parts = null;
     let phase = 0;
@@ -46,8 +46,8 @@ export function useWhaleMotion({ mood, asleep, reaction }) {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
 
-      const { mood, asleep } = state.current;
-      const target = RHYTHMS[asleep ? "asleep" : mood];
+      const { mood, asleep, still } = state.current;
+      const target = RHYTHMS[still ? "still" : asleep ? "asleep" : mood];
       for (const key in target) current[key] = approach(current[key], target[key], 0.15, dt);
 
       phase += dt * current.speed * TAU;

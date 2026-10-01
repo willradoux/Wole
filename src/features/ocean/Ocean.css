@@ -5,6 +5,8 @@
   background: linear-gradient(var(--ocean-top), var(--ocean-bottom));
   transition: transform 1.2s cubic-bezier(0.25, 1.15, 0.4, 1);
   will-change: transform;
+  /* translate é separado do transform, então dá pra animar a entrada sem brigar com o nível do mar */
+  animation: ocean-intro 1s cubic-bezier(0.2, 0.8, 0.3, 1) both;
 }
 
 .ocean__waves {
@@ -47,6 +49,11 @@
   opacity: 0;
   animation: ocean-bubble linear infinite;
   will-change: transform;
+}
+
+@keyframes ocean-intro {
+  from { translate: 0 90px; }
+  to   { translate: 0 0; }
 }
 
 @keyframes ocean-swell {

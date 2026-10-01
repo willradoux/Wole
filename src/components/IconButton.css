@@ -3,7 +3,6 @@
   display: grid;
   place-items: center;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition:
@@ -18,8 +17,9 @@
   height: 50%;
 }
 
-.icon-button--lg { width: 64px; height: 64px; }
-.icon-button--md { width: 44px; height: 44px; }
+/* quadrado com canto bem arredondado, tipo ícone de app */
+.icon-button--lg { width: 80px; height: 80px; border-radius: 26px; }
+.icon-button--md { width: 60px; height: 60px; border-radius: 20px; }
 
 .icon-button--primary {
   background: var(--accent);
@@ -27,13 +27,13 @@
   box-shadow: 0 4px 24px rgba(0, 113, 227, 0.32);
 }
 
-/* branco translúcido pra continuar visível tanto no fundo branco quanto em cima do mar */
+/* vidro: branco translúcido + desfoque do que tá atrás (aparece bem em cima do mar) */
 .icon-button--secondary {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   color: var(--accent);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(30, 60, 120, 0.12);
 }
 
 .icon-button:hover {

@@ -8,6 +8,7 @@ export const RHYTHMS = {
   happy:    { amp: 10, speed: 0.45, tilt: 4,   offset: -2, tail: 9,   fins: 16 },
   ecstatic: { amp: 14, speed: 0.8,  tilt: 6,   offset: -4, tail: 13,  fins: 22 },
   asleep:   { amp: 2,  speed: 0.14, tilt: 1.5, offset: 8,  tail: 1.5, fins: 3 },
+  still:    { amp: 0,  speed: 0.2,  tilt: 0,   offset: 0,  tail: 0,   fins: 0 }, // intro
 };
 
 // pulo e carinho. começam e terminam no zero porque são somados por cima do
