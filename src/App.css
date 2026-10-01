@@ -9,11 +9,25 @@
   padding: var(--space-md);
 }
 
+/* fundo azul da Wole no close da intro, some quando a câmera afasta */
+.intro-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--wole-blue);
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-standard), visibility 0s 0.6s;
+}
+
+.intro-backdrop.is-gone {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .app__actions {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
   /* entra depois que a Wole já chegou e deu oi */
-  animation: fade-up 0.6s var(--ease-standard) 2.2s both;
+  animation: fade-up 0.6s var(--ease-standard) 3.2s both;
 }

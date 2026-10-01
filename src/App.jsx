@@ -13,6 +13,7 @@ export default function App() {
   return (
     <>
       <Ocean level={pet.water} />
+      <div className={`intro-backdrop ${phase === "done" ? "is-gone" : ""}`} aria-hidden="true" />
 
       <main className="app">
         <WhalePet

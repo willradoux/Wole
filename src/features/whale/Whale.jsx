@@ -37,28 +37,28 @@ function HappyEyes() {
 
 // só o desenho. quem mexe é o useWhaleMotion
 // memo pra não redesenhar o SVG toda vez que o relógio do pet atualiza
-export const Whale = memo(function Whale({ mood, expression }) {
+export const Whale = memo(function Whale({ mood, expression, flat = false }) {
   const asleep = expression === "asleep";
   const joyful = !asleep && (mood === "ecstatic" || expression === "excited" || expression === "loved");
   const eyeState = asleep ? "asleep" : mood === "sad" ? "sad" : "open";
 
   return (
-    <svg className={`whale whale--${eyeState}`} viewBox="0 -40 240 220" aria-hidden="true">
+    <svg className={`whale whale--${eyeState} ${flat ? "whale--flat" : ""}`} viewBox="0 -40 240 220" aria-hidden="true">
       <defs>
         <clipPath id="whale-clip">
           <path d={BODY} />
         </clipPath>
 
         <linearGradient id="whale-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#b6e1ff" />
-          <stop offset="0.55" stopColor="#7cbcf5" />
-          <stop offset="1" stopColor="#5a9fe6" />
+          <stop offset="0" stopColor="#5cb0ff" />
+          <stop offset="0.55" stopColor="#1a8aff" />
+          <stop offset="1" stopColor="#1170e0" />
         </linearGradient>
 
         {/* borda mais escura dá o volume */}
         <radialGradient id="whale-depth" gradientUnits="userSpaceOnUse" cx="112" cy="92" r="125">
-          <stop offset="0.5" stopColor="#1d3f7a" stopOpacity="0" />
-          <stop offset="1" stopColor="#1d3f7a" stopOpacity="0.4" />
+          <stop offset="0.5" stopColor="#0a3478" stopOpacity="0" />
+          <stop offset="1" stopColor="#0a3478" stopOpacity="0.35" />
         </radialGradient>
 
         {/* luz fosca em cima. antes era um blur no SVG mas ele era recalculado
@@ -74,8 +74,8 @@ export const Whale = memo(function Whale({ mood, expression }) {
         </linearGradient>
 
         <linearGradient id="whale-tail" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#a2d6ff" />
-          <stop offset="1" stopColor="#4f93dc" />
+          <stop offset="0" stopColor="#6ab8ff" />
+          <stop offset="1" stopColor="#1170e0" />
         </linearGradient>
 
         <linearGradient id="whale-eye" x1="0" y1="0" x2="0" y2="1">
@@ -104,10 +104,10 @@ export const Whale = memo(function Whale({ mood, expression }) {
 
       {/* o rotate fica na ellipse e a animação no <g>, senão um sobrescreve o outro */}
       <g className="whale__fin whale__fin--left">
-        <ellipse cx="26" cy="146" rx="16" ry="8" fill="#5f9fe2" transform="rotate(-25 26 146)" />
+        <ellipse cx="26" cy="146" rx="16" ry="8" fill="#1878ea" transform="rotate(-25 26 146)" />
       </g>
       <g className="whale__fin whale__fin--right">
-        <ellipse cx="214" cy="146" rx="16" ry="8" fill="#5f9fe2" transform="rotate(25 214 146)" />
+        <ellipse cx="214" cy="146" rx="16" ry="8" fill="#1878ea" transform="rotate(25 214 146)" />
       </g>
 
       <path d={BODY} fill="url(#whale-body)" />
@@ -116,6 +116,14 @@ export const Whale = memo(function Whale({ mood, expression }) {
         <path d={BELLY} fill="url(#whale-belly)" />
         <path d={BODY} fill="url(#whale-depth)" />
         <ellipse cx="100" cy="66" rx="70" ry="36" fill="url(#whale-light)" />
+      </g>
+
+      {/* azul liso por cima de tudo, pro close da intro ficar igual ao fundo */}
+      <g className="whale__flat">
+        <path d={TAIL} />
+        <path d={BODY} />
+        <ellipse cx="26" cy="146" rx="16" ry="8" transform="rotate(-25 26 146)" />
+        <ellipse cx="214" cy="146" rx="16" ry="8" transform="rotate(25 214 146)" />
       </g>
 
       <g className="whale__eyes">{joyful ? <HappyEyes /> : <OpenEyes />}</g>

@@ -1,12 +1,24 @@
+/* registrada pra dar pra fazer transição da cor conforme o mar enche */
+@property --depth {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 /* o mar tem sempre a altura da tela e sobe com transform, animar height travava */
 .ocean {
+  --ocean-top: color-mix(in oklab, var(--ocean-shallow-top), var(--ocean-deep-top) calc(var(--depth) * 100%));
+  --ocean-bottom: color-mix(in oklab, var(--ocean-shallow-bottom), var(--ocean-deep-bottom) calc(var(--depth) * 100%));
+
   position: fixed;
   inset: 0;
   background: linear-gradient(var(--ocean-top), var(--ocean-bottom));
-  transition: transform 1.2s cubic-bezier(0.25, 1.15, 0.4, 1);
+  transition:
+    transform 1.2s cubic-bezier(0.25, 1.15, 0.4, 1),
+    --depth 1.2s var(--ease-standard);
   will-change: transform;
   /* translate é separado do transform, então dá pra animar a entrada sem brigar com o nível do mar */
-  animation: ocean-intro 1s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  animation: ocean-intro 1.2s cubic-bezier(0.2, 0.8, 0.3, 1) 2.3s both;
 }
 
 .ocean__waves {

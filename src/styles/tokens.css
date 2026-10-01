@@ -11,10 +11,15 @@
   --accent: #0071e3;
   --fill-tertiary: rgba(120, 120, 128, 0.12);
 
-  --ocean-top: #7cc8f6;
-  --ocean-bottom: #3d9be6;
-  --ocean-wave-mid: #a6dafa;
-  --ocean-wave-back: #cdeaff;
+  --wole-blue: #1a8aff;
+
+  /* o mar começa raso (azul clarinho, puxando pro verde) e fica azul fundo quando enche */
+  --ocean-shallow-top: #5cc8e0;
+  --ocean-shallow-bottom: #2a9cc8;
+  --ocean-deep-top: #2a8ff0;
+  --ocean-deep-bottom: #0b4fae;
+  --ocean-wave-mid: #95d8f0;
+  --ocean-wave-back: #cdeefa;
 
   --space-xs: 4px;
   --space-sm: 8px;

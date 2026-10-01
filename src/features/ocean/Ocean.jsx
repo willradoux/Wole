@@ -31,7 +31,11 @@ function wavePath(crests, height) {
 
 export const Ocean = memo(function Ocean({ level }) {
   return (
-    <div className="ocean" style={{ transform: `translateY(${100 - level}%)` }} aria-hidden="true">
+    <div
+      className="ocean"
+      style={{ transform: `translateY(${100 - level}%)`, "--depth": level / 100 }}
+      aria-hidden="true"
+    >
       <div className="ocean__waves">
         {WAVES.map((wave) => (
           <svg

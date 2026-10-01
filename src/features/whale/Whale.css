@@ -17,6 +17,22 @@
 .whale__fin--left  { transform-origin: right center; }
 .whale__fin--right { transform-origin: left center; }
 
+/* no close da intro ela fica lisa; quando a câmera afasta o 3D volta aos poucos */
+.whale__flat {
+  fill: var(--wole-blue);
+  /* o contorno da mesma cor tampa o antialiasing da borda, senão aparecia o desenho por baixo */
+  stroke: var(--wole-blue);
+  stroke-width: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s var(--ease-standard) 0.15s;
+}
+
+.whale--flat .whale__flat {
+  opacity: 1;
+  transition: none;
+}
+
 /* ---------- olhos (todas as expressões ficam aqui) ---------- */
 .whale__eye {
   transform-box: fill-box;

@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { Whale } from "./Whale";
+import { useIntroZoom } from "./useIntroZoom";
 import { useWhaleMotion } from "./useWhaleMotion";
 import "./WhalePet.css";
 
@@ -9,6 +11,8 @@ export function WhalePet({ mood, expression, asleep, reaction, intro = false, on
     reaction,
     still: intro,
   });
+  const introRef = useRef(null);
+  useIntroZoom({ stageRef, layerRef: introRef, intro });
   const showHearts = !asleep && (mood === "ecstatic" || expression === "loved");
 
   function handleKeyDown(event) {
@@ -37,10 +41,10 @@ export function WhalePet({ mood, expression, asleep, reaction, intro = false, on
         onClick={onPet}
         onKeyDown={handleKeyDown}
       >
-        <div className="pet__layer pet__layer--intro">
+        <div ref={introRef} className="pet__intro">
           <div ref={floatRef} className="pet__layer">
             <div ref={reactionRef} className="pet__layer pet__layer--reaction">
-              <Whale mood={mood} expression={expression} />
+              <Whale mood={mood} expression={expression} flat={intro} />
             </div>
           </div>
         </div>

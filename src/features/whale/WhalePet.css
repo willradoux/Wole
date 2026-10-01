@@ -8,7 +8,7 @@
 /*
   camadas, de fora pra dentro:
   .pet__stage            -> recebe o clique / teclado
-  .pet__layer--intro     -> tamanho grande da intro
+  .pet__intro            -> zoom da intro (useIntroZoom)
   .pet__layer (2ª)       -> flutuar (useWhaleMotion, todo frame)
   .pet__layer--reaction  -> pulo e carinho (Web Animations, somado por cima)
 */
@@ -33,13 +33,9 @@
   transform-origin: 50% 85%;
 }
 
-/* intro: começa grande e encolhe pro tamanho normal com uma mola */
-.pet__layer--intro {
-  transition: transform 0.75s var(--ease-spring);
-}
-
-.pet--intro .pet__layer--intro {
-  transform: scale(1.45);
+/* sem will-change na camada da intro: senão o navegador rasteriza pequeno e fica borrado no zoom */
+.pet__intro {
+  position: relative;
 }
 
 /* a sombra só aparece quando ela já está no tamanho normal */
