@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 // rosto dentro do viewBox (0 -40 240 220)
 const FACE = { x: 120, y: 102 };
@@ -28,9 +28,11 @@ function closeUp(stage) {
   };
 }
 
-// intro: começa colada no rosto dela e depois a "câmera" se afasta
+// intro: começa colada no rosto dela e depois a "câmera" se afasta.
+// devolve `settled` = true quando ela já chegou no lugar (aí a sombra pode aparecer)
 export function useIntroZoom({ stageRef, layerRef, intro }) {
   const start = useRef(null);
+  const [settled, setSettled] = useState(!intro);
 
   // antes do primeiro paint, pra não piscar a cena normal
   useLayoutEffect(() => {
@@ -47,7 +49,10 @@ export function useIntroZoom({ stageRef, layerRef, intro }) {
     if (intro || !start.current) return;
 
     layer.style.transform = "";
-    layer.animate([{ transform: start.current.transform }, { transform: "none" }], ZOOM_OUT);
+    const zoomOut = layer.animate([{ transform: start.current.transform }, { transform: "none" }], ZOOM_OUT);
+    zoomOut.onfinish = () => setSettled(true);
     start.current = null;
   }, [intro, layerRef]);
+
+  return { settled };
 }

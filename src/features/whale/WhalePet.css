@@ -38,11 +38,6 @@
   position: relative;
 }
 
-/* a sombra só aparece quando ela já está no tamanho normal */
-.pet--intro .pet__shadow {
-  visibility: hidden;
-}
-
 /* no hover ela se encolhe esperando carinho */
 .pet__stage .whale {
   transition: transform 0.5s var(--ease-spring);
@@ -60,6 +55,14 @@
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(70, 120, 200, 0.32), rgba(70, 120, 200, 0.12) 60%, transparent);
   will-change: transform, opacity;
+  /* só aparece quando ela chega no lugar. filter e não opacity porque
+     o opacity já é controlado pelo useWhaleMotion a cada frame */
+  filter: opacity(0);
+  transition: filter 0.6s var(--ease-standard);
+}
+
+.pet--settled .pet__shadow {
+  filter: opacity(1);
 }
 
 .pet__zzz {

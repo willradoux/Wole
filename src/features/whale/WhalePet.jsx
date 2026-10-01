@@ -12,7 +12,7 @@ export function WhalePet({ mood, expression, asleep, reaction, intro = false, on
     still: intro,
   });
   const introRef = useRef(null);
-  useIntroZoom({ stageRef, layerRef: introRef, intro });
+  const { settled } = useIntroZoom({ stageRef, layerRef: introRef, intro });
   const showHearts = !asleep && (mood === "ecstatic" || expression === "loved");
 
   function handleKeyDown(event) {
@@ -23,7 +23,7 @@ export function WhalePet({ mood, expression, asleep, reaction, intro = false, on
   }
 
   return (
-    <div className={`pet ${intro ? "pet--intro" : ""}`}>
+    <div className={`pet ${settled ? "pet--settled" : ""}`}>
       {asleep && (
         <div className="pet__zzz" aria-hidden="true">
           <span>z</span>
